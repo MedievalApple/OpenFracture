@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
@@ -106,9 +107,10 @@ public class Fracture : MonoBehaviour
 
     void Update()
     {
+        var keyboard = Keyboard.current;
         if (triggerOptions.triggerType == TriggerType.Keyboard)
         {
-            if (Input.GetKeyDown(triggerOptions.triggerKey))
+            if (keyboard[triggerOptions.triggerKey].wasPressedThisFrame)
             {
                 callbackOptions.CallOnFracture(null, gameObject, transform.position);
                 this.ComputeFracture();

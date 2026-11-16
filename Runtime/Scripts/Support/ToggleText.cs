@@ -1,15 +1,17 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ToggleText : MonoBehaviour
 {
-    public KeyCode toggleKey;
+    public Key toggleKey;
 
     public GameObject textObject;
 
     // Start is called before the first frame update
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        var keyboard = Keyboard.current;
+        if (keyboard[toggleKey].wasPressedThisFrame)
         {
             textObject.SetActive(!textObject.activeSelf);
         }

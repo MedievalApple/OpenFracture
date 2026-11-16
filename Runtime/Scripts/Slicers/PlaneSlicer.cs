@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 
 [ExcludeFromCoverage]
@@ -28,16 +29,17 @@ public class PlaneSlicer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
+        var keyboard = Keyboard.current;
+        if (keyboard.qKey.isPressed)
         {
             this.transform.Rotate(Vector3.forward, RotationSensitivity, Space.Self);
         }
-        if (Input.GetKey(KeyCode.E))
+        if (keyboard.eKey.isPressed)
         {
             this.transform.Rotate(Vector3.forward, -RotationSensitivity, Space.Self);
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (keyboard.leftShiftKey.wasPressedThisFrame)
         {
             var mesh = this.GetComponent<MeshFilter>().sharedMesh;
             var center = mesh.bounds.center;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
 
 [ExcludeFromCoverage]
@@ -6,12 +7,13 @@ public class Projectile : MonoBehaviour
 {
     public GameObject projectile;
     public float initialVelocity;
-    public KeyCode FireKey;
+    public Key FireKey;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(FireKey))
+        var keyboard = Keyboard.current;
+        if (keyboard[FireKey].wasPressedThisFrame)
         {
             // Remove other projectiles from the scene
             foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Projectile"))

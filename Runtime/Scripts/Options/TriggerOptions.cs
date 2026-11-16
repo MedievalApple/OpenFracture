@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum TriggerType 
 {
@@ -25,7 +26,7 @@ public class TriggerOptions
     public List<string> triggerAllowedTags;
 
     [Tooltip("If the trigger type is Keyboard, this is the key code that will trigger a fracture when pressed.")]
-    public KeyCode triggerKey;
+    public Key triggerKey;
 
     public TriggerOptions()
     {
@@ -33,7 +34,7 @@ public class TriggerOptions
         this.minimumCollisionForce = 0f;
         this.filterCollisionsByTag = false;
         this.triggerAllowedTags = new List<string>();
-        this.triggerKey = KeyCode.None;
+        this.triggerKey = Key.None;
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.InputSystem;
 
 [ExcludeFromCoverage]
 public class CameraController : MonoBehaviour
@@ -23,8 +24,9 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {    
-        float dx = Input.GetAxis("Mouse X")  * mouseSensitivity;
-        float dy = Input.GetAxis("Mouse Y")  * mouseSensitivity;
+        var mouse = Mouse.current;
+        float dx = mouse.delta.ReadValue().x  * mouseSensitivity;
+        float dy = mouse.delta.ReadValue().y  * mouseSensitivity;
 
         if (elapsedTime > 0.5f)
         {
@@ -47,20 +49,21 @@ public class CameraController : MonoBehaviour
     {
         // Check for player movement. We can handle input here because it is continuous and
         // not instantaneous like jumping.
+        var keyboard = Keyboard.current;
         var rigidbody = this.transform.parent.GetComponent<Rigidbody>();
-        if (Input.GetKey(KeyCode.W))
+        if (keyboard.wKey.isPressed)
         {
             rigidbody.AddRelativeForce(Vector3.forward * acceleration, ForceMode.Acceleration);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (keyboard.aKey.isPressed)
         {
             rigidbody.AddRelativeForce(Vector3.left * acceleration, ForceMode.Acceleration);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (keyboard.sKey.isPressed)
         {
             rigidbody.AddRelativeForce(Vector3.back * acceleration, ForceMode.Acceleration);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (keyboard.dKey.isPressed)
         {
             rigidbody.AddRelativeForce(Vector3.right * acceleration, ForceMode.Acceleration);
         }

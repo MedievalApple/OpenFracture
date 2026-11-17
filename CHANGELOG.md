@@ -4,6 +4,8 @@
 ### Features
 - Migrated to Unity 6
 - Migrated samples to the new input system
+### Bug Fixes
+- Fixed `Limit collisions to selected tags?` toggle, not working when disabled on the fracture script
 
 ## 1.0.2
 ### Features
